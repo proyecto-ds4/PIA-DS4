@@ -46,9 +46,8 @@
 			require_once("assets/php/medicos.php");
 			require_once("assets/php/habitaciones.php");
 			require_once("assets/php/diagnosticos.php");
-			//imprimir();
+			imprimir();
 			//conexion();
-			//imprimirPrueba();
 		?>
 		
 
