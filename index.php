@@ -41,14 +41,16 @@
 
 	</head>
 	<body>
-		
 		<?php
-			require("pacientes.php");
-			require("medicos.php");
-			require("habitaciones.php");
-			require("diagnosticos.php");
-			imprimir();
+			require_once("assets/php/pacientes.php");
+			require_once("assets/php/medicos.php");
+			require_once("assets/php/habitaciones.php");
+			require_once("assets/php/diagnosticos.php");
+			//imprimir();
+			//conexion();
+			//imprimirPrueba();
 		?>
+		
 
 		<!-- Vendor -->
 		<script src="assets/vendor/jquery/jquery.js"></script>
