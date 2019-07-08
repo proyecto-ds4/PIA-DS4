@@ -9,7 +9,8 @@
 		$apellidos = "Bersoza Guerra";
 		$direccion = "Prueba";
 		$stat = 1;
-		$fecNac = "20190705";
+		$fecNac = "19940831";
+		$fecIng = "20190708";
 		$tel = "8112937424";
 		$numHab = 1;
 		$diag = 1;
@@ -25,9 +26,9 @@
 		}
 		try{
 			//Se prepara el query
-			$stmt = $conexion->prepare("CALL SP_CRUD_PACIENTES(?,?,?,?,?,?,?,?,?,?,?,@res)");
+			$stmt = $conexion->prepare("CALL SP_CRUD_PACIENTES(?,?,?,?,?,?,?,?,?,?,?,?,@res)");
 			//Se definen los valores de los parámetros, i = entero, s = string, d = double, b = es otra weaa
-			mysqli_stmt_bind_param($stmt, "issssissiis", $opc, $expediente, $nombre, $apellidos, $direccion, $stat, $fecNac, $tel, $numHab, $diag, $med);
+			mysqli_stmt_bind_param($stmt, "issssisssiis", $opc, $expediente, $nombre, $apellidos, $direccion, $stat, $fecNac, $fecIng, $tel, $numHab, $diag, $med);
 			//Se ejecuta el statement
 			mysqli_stmt_execute($stmt);
 
