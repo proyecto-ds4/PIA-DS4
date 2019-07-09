@@ -27,8 +27,6 @@
 		try{
 			//Se prepara el query
 			$stmt = $conexion->prepare("CALL SP_CRUD_PACIENTES(?,?,?,?,?,?,?,?,?,?,?,?,@res)");
-			//Prueba eliminar
-			//$stmt = $conexion->prepare("CALL SP_CRUD_PACIENTES(?,?,?,?,?,?,?,?,?,?,?,?,@res)");
 			//Se definen los valores de los parámetros, i = entero, s = string, d = double, b = es otra weaa
 			mysqli_stmt_bind_param($stmt, "issssisssiis", $opc, $expediente, $nombre, $apellidos, $direccion, $stat, $fecNac, $fecIng, $tel, $numHab, $diag, $med);
 			//Se ejecuta el statement
