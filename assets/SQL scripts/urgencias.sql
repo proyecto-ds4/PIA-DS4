@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 11, 2019 at 01:09 AM
+-- Generation Time: Jul 11, 2019 at 04:15 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.6
 
@@ -156,6 +156,46 @@ CASE OPC
 END CASE;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_CRUD_USUARIOS` (`OPC` INT, `USERNAME` VARCHAR(30), `PASS` VARCHAR(32), `CREATE_DATE` DATE, `TIP` CHAR(1), OUT `RES` BIT)  BEGIN
+CASE OPC
+	WHEN 1 THEN
+		INSERT INTO USUARIOS VALUES(USERNAME,MD5(PASS),CREATE_DATE,TIP);
+		IF EXISTS(SELECT * FROM USUARIOS WHERE USUARIO = USERNAME) THEN
+			SELECT CONCAT("Se el usuario: ",USUARIO) AS MSG, 1 AS RES FROM USUARIOS
+            WHERE USUARIO = USERNAME;
+			SET RES = 1;
+        ELSE
+			SELECT "No se pudó registrar!" AS MSG, 0 AS RES;
+			SET RES = 0;
+		END IF;
+	WHEN 2 THEN
+		SELECT USUARIO, CREACION, TIPO FROM USUARIO
+		WHERE (USERNAME IS NULL OR USUARIO = USERNAME) AND (CREATE_DATE IS NULL OR CREACION = CREATE_DATE) AND (TIP IS NULL OR TIPO = TIP) AND (PASSWORD IS NULL OR PASSWORD = PASS);
+		SET RES = 1;
+	WHEN 3 THEN
+		UPDATE USUARIOS SET PASSWORD = MD5(PASS), TIPO = TIP WHERE USUARIO = USERNAME AND PASSWORD = MD5(PASS);
+		IF EXISTS(SELECT * FROM USUARIOS WHERE USUARIO = USERNAME AND TIPO = TIP AND PASSWORD = MD5(PASS)) THEN
+			SELECT "Se actualizó correctamente!" AS MSG, 1 AS RES;
+			SET RES = 1;
+		ELSE
+			SELECT "No se pudó actualizar!" AS MSG, 0 AS RES;
+			SET RES = 0;
+		END IF;
+	WHEN 4 THEN
+		DELETE FROM USUARIOS WHERE USUARIO = USERNAME;
+        IF NOT EXISTS(SELECT * FROM USUARIOS WHERE USUARIO = USERNAME) THEN
+			SELECT "Se eliminó correctamente!" AS MSG, 1 AS RES;
+			SET RES = 1;
+		ELSE
+			SELECT "No se pudó eliminar el usuario!" AS MSG, 0 AS RES;
+			SET RES = 0;
+		END IF;
+	ELSE
+		SELECT "OPCIÓN NO VALIDA!" AS MSG, 3 AS RES;
+		SET RES = 3;
+END CASE;
+END$$
+
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -261,6 +301,19 @@ CREATE TABLE `pacientes` (
   `activo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `usuario` varchar(30) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  `creacion` date NOT NULL DEFAULT current_timestamp(),
+  `tipo` char(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Indexes for dumped tables
 --
@@ -303,6 +356,12 @@ ALTER TABLE `pacientes`
   ADD PRIMARY KEY (`expediente`),
   ADD KEY `FK_MED` (`medico`),
   ADD KEY `FK_DIAG` (`claveDiagnostico`);
+
+--
+-- Indexes for table `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`usuario`);
 
 --
 -- AUTO_INCREMENT for dumped tables
