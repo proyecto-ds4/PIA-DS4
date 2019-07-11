@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 11, 2019 at 04:15 AM
+-- Generation Time: Jul 12, 2019 at 01:30 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.6
 
@@ -26,6 +26,48 @@ DELIMITER $$
 --
 -- Procedures
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_CRUD_ALERGIASXPACIENTE` (`OPC` INT, `CLAVEALE` INT, `EXPED` VARCHAR(20), OUT `RES` BIT)  BEGIN
+CASE OPC
+	WHEN 1 THEN
+		INSERT INTO ALERGIASPACIENTE VALUES(EXPED,CLAVEALE);
+		IF EXISTS(SELECT * FROM ALERGIASPACIENTE WHERE EXPEDIENTE = EXPED AND CLAVEALERGIA = CLAVEALE) THEN
+			SELECT CONCAT("Se registró la alergía para el expediente: ",EXPEDIENTE) AS MSG, 1 AS RES FROM ALERGIASPACIENTE
+            WHERE EXPEDIENTE = EXPED AND CLAVEALERGIA = CLAVEALE;
+			SET RES = 1;
+        ELSE
+			SELECT "No se pudó registrar!" AS MSG, 0 AS RES;
+			SET RES = 0;
+		END IF;
+	WHEN 2 THEN
+		SELECT CONCAT(SUBSTRING_INDEX(NOMBRE, ' ', 1),SUBSTRING_INDEX(APELLIDOS, ' ', 1)) AS PACIENTE, A.CLAVEALERGIA AS "CLAVE ALERGIA", A.TIPO, A.DESCRIPCION FROM ALERGIASPACIENTE AP
+		JOIN ALERGIAS A ON A.CLAVEALERGIA = AP.CLAVEALERGIA
+		JOIN PACIENTE P ON P.EXPEDIENTE = AP.EXPEDIENTE		
+		WHERE (CLAVEALE IS NULL OR CLAVEALERGIA = CLAVEALE) AND (EXPED IS NULL OR EXPEDIENTE = EXPED);
+		SET RES = 1;
+	WHEN 3 THEN
+		UPDATE ALERGIASPACIENTE SET CLAVEALERGIA = CLAVEALE WHERE EXPEDIENTE = EXPED;
+		IF EXISTS(SELECT * FROM ALERGIASPACIENTE WHERE EXPEDIENTE = EXPED AND CLAVEALERGIA = CLAVEALE) THEN
+			SELECT "Se actualizó correctamente!" AS MSG, 1 AS RES;
+			SET RES = 1;
+		ELSE
+			SELECT "No se pudó actualizar!" AS MSG, 0 AS RES;
+			SET RES = 0;
+		END IF;
+	WHEN 4 THEN
+		DELETE FROM ALERGIASPACIENTE WHERE EXPEDIENTE = EXPED AND CLAVEALERGIA = CLAVEALE;
+        IF NOT EXISTS(SELECT * FROM ALERGIASPACIENTE WHERE EXPEDIENTE = EXPED AND CLAVEALERGIA = CLAVEALE) THEN
+			SELECT "Se eliminó correctamente!" AS MSG, 1 AS RES;
+			SET RES = 1;
+		ELSE
+			SELECT "No se pudó eliminar" AS MSG, 0 AS RES;
+			SET RES = 0;
+		END IF;
+	ELSE
+		SELECT "OPCIÓN NO VALIDA!" AS MSG, 3 AS RES;
+		SET RES = 3;
+END CASE;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_CRUD_HABITACIONES` (`OPC` INT, `HAB` INT, `STAT` CHAR(1), `DES` VARCHAR(200), OUT `RES` BIT)  BEGIN
 DECLARE varHAB INT;
 CASE OPC
@@ -196,6 +238,18 @@ CASE OPC
 END CASE;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_HISTORIAL` (`EXPED` VARCHAR(20), `TIP` VARCHAR(30), `FEC` DATE, `TIPOCAM` VARCHAR(50), `DES` VARCHAR(300), OUT `RES` BIT)  BEGIN
+	INSERT INTO HISTORIAL(EXPEDIENTE,TIPO,FECHA,TIPOCAMBIO,DESCRIPCION) VALUES(EXPED,TIP,FEC,TIPOCAM,DES);
+	IF EXISTS(SELECT * FROM HISTORIAL WHERE EXPEDIENTE = EXPED AND TIPO = TIP AND FECHA = FEC AND TIPOCAMBIO = TIPOCAM AND DESCRIPCION = DES) THEN
+		SELECT CONCAT("Se registró el historial del expediente: ",EXPEDIENTE) AS MSG, 1 AS RES FROM HISTORIAL
+           WHERE EXPEDIENTE = EXPED AND TIPO = TIP AND FECHA = FEC AND TIPOCAMBIO = TIPOCAM AND DESCRIPCION = DES;
+		SET RES = 1;
+    ELSE
+		SELECT "No se pudó registrar el historial!" AS MSG, 0 AS RES;
+		SET RES = 0;
+	END IF;
+END$$
+
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -258,6 +312,21 @@ CREATE TABLE `habitaciones` (
 INSERT INTO `habitaciones` (`numHabitacion`, `status`, `descripcion`) VALUES
 (1, 'O', 'PRUEBA'),
 (2, 'D', 'PRUEBA ACTUALIZACION');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `historial`
+--
+
+CREATE TABLE `historial` (
+  `id` int(11) NOT NULL,
+  `expediente` varchar(20) NOT NULL,
+  `tipo` varchar(30) NOT NULL,
+  `fecha` date NOT NULL,
+  `tipoCambio` varchar(50) NOT NULL,
+  `descripcion` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -344,6 +413,12 @@ ALTER TABLE `habitaciones`
   ADD PRIMARY KEY (`numHabitacion`);
 
 --
+-- Indexes for table `historial`
+--
+ALTER TABLE `historial`
+  ADD PRIMARY KEY (`id`,`expediente`);
+
+--
 -- Indexes for table `medicos`
 --
 ALTER TABLE `medicos`
@@ -378,6 +453,12 @@ ALTER TABLE `alergias`
 --
 ALTER TABLE `diagnostico`
   MODIFY `claveDiagnostico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `historial`
+--
+ALTER TABLE `historial`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
