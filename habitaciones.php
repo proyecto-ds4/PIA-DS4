@@ -29,13 +29,17 @@
 		<link rel="stylesheet" href="assets/stylesheets/skins/default.css" />
 
 		<!-- Theme Custom CSS -->
-		<link rel="stylesheet" href="assets/stylesheets/theme-custom.css">
+		<link rel="stylesheet" href="assets/stylesheets/theme-custom.css"/>
+		<link rel="stylesheet" href="assets/vendor/pnotify/pnotify.custom.css"/>
 
 		<!-- Head Libs -->
 		<script src="assets/vendor/modernizr/modernizr.js"></script>
 
 	</head>
 	<body>
+		<?php 
+		 	require_once("assets/php/habitaciones.php");
+		?>
 		<section class="body">
 
 			<!-- start: header -->
@@ -163,52 +167,29 @@
 												<th>Paciente</th>
 											</tr>
 										</thead>
-										<div class="col-md-3 form-group">
-										<a class="modal-with-form btn btn-primary" href="#HabForm" style="padding-left: 21px; padding-right: 22px;">Añadir Habitación</a> 
-										<!-- Modal Form -->
-											<div id="HabForm" class="modal-block modal-block-primary mfp-hide">
 
-												<section class="panel">
-
-													<header class="panel-heading">
-														<h2 class="panel-title">Nueva habitación</h2>
-													</header>
-
-													<div class="panel-body">
-
-														<form id="formulario" method="POST" class="form-horizontal mb-lg" novalidate="novalidate"> action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-
-															<div class="form-group mt-lg">
-																<label class="col-sm-3 control-label">No. de Habitación</label>
-																<div class="col-sm-9">
-																	<input type="text" id="numhab" name="numhab" placeholder="Habitación" class="form-control" required/>
-																</div>
-															</div>
-
-															<div class="form-group">
-																<label class="col-sm-3 control-label">Descripción</label>
-																<div class="col-sm-9">
-																	<input type="text" id="desc" name="desc" class="form-control" placeholder="Descripción" required/>
-																</div>
-															</div>
-
-															<div class="form-group">
-																<label class="col-sm-3 control-label">Status</label>
-																<div class="col-sm-9">
-																	<select id="status" name="status" class="form-control mb-md">
-																		<option value="0">Seleccione un status</option>
-																		<option value="D">Disponible</option>
-																		<option value="O">Ocupado</option>
-																		<option value="S">Sucio</option>
-																	</select>	
-																</div>
-																<button type="submit" name="registrar" value= 'registrar' class="btn btn-primary modal-confirm" >Agregar</button>
-																<span><?php echo $res; ?></span>
-															</div>
-													</div>
+<tbody>
+										<div id="habcon">
+											<div id="addhab">
+												<section class="widget">
+													<h4 class="widgettitulo">Añadir nueva habitación</h4>
+													<form id="formulario" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+														<input type="text" id="numhab" name="numhab" placeholder="Habitación" required>
+														<select id="status" name="status">
+															<option value="0">Seleccione un status</option>
+															<option value="D">Disponible</option>
+															<option value="O">Ocupado</option>
+															<option value="S">Sucio</option>
+														</select>
+														<input type="text" id="desc"name="desc" placeholder="Descripción" required>
+														<button type="submit" name="registrar" value= 'registrar' >Agregar</button>
+													</form>
+													<span><?php echo $res; ?></span>
 												</section>
 											</div>
 										</div>
+								
+										</tbody>
 									</table>
 								</div>
 								
@@ -262,6 +243,9 @@
 		
 		<!-- Theme Initialization Files -->
 		<script src="assets/javascripts/theme.init.js"></script>
+		<script src="assets/vendor/pnotify/pnotify.custom.js"></script>
+
+		<script src="assets/javascripts/ui-elements/examples.modals.js"></script>
 
 	</body>
 </html>
