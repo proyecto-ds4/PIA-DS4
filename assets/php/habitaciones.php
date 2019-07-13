@@ -2,15 +2,12 @@
 
 $res="";
 if (isset($_POST['registrar'])){
-
+	if($_POST['registrar'] && $_POST['registrar'] != 0){
+   		$status=$_POST['status'];
+	}
 	$status = $_REQUEST['status'];
 	$desc = $_REQUEST['desc'];
 	inup(1,0,$status,$desc);
-
-	if($_POST['registrar'] && $_POST['registrar'] != 0)
-{
-   $status=$_POST['status'];
-}
 
 }
 
