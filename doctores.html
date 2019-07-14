@@ -36,6 +36,7 @@
 
 	</head>
 	<body>
+	<?php require_once("assets/php/medicos.php");?>
 		<section class="body">
 
 			<!-- start: header -->
@@ -155,60 +156,63 @@
 							</header>
 							
 							
-							
+							<form id="formulario-registro" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" > 
 							<div class="panel-body">
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="inputDefault">No. de Cedula</label>
 									<div class="col-md-6">
-										<input type="text" class="form-control" id="inputDefault">
-										<span class="help-block">Capture el la cedula del medico.</span>
+										<input type="text" class="form-control" id="inputDefault" name="cedula">
+										<span class="help-block">Capture la cedula del medico.</span>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="inputDefault">Nombre</label>
 									<div class="col-md-6">
-										<input type="text" class="form-control" id="inputDefault">
+										<input type="text" class="form-control" id="inputDefault" name="nombre">
 										<span class="help-block">Capture el nombre del medico.</span>
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="inputDefault">Especialidad</label>
+									<label class="col-md-3 control-label" for="inputDefault">Apellidos</label>
 									<div class="col-md-6">
-										<input type="text" class="form-control" id="inputDefault">
-										<span class="help-block">Capture la especialidad del medico.</span>
+										<input type="text" class="form-control" id="inputDefault" name="apellidos">
+										<span class="help-block">Capture los apellidos del medico.</span>
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="inputDefault">Departamento</label>
+									<label class="col-md-3 control-label" for="inputDefault" name="direccion">Direccion</label>
 									<div class="col-md-6">
-										<input type="text" class="form-control" id="inputDefault">
-										<span class="help-block">Capture el departamento del medico.</span>
+										<input type="text" class="form-control" id="inputDefault" name="apellidos">
+										<span class="help-block">Capture la direccion del medico.</span>
 									</div>
 								</div>
+								
+								
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="inputDefault">Telefono</label>
 									<div class="col-md-6">
-										<input type="text" class="form-control" id="inputDefault">
+										<input type="text" class="form-control" id="inputDefault" name="telefono">
 										<span class="help-block">Capture el telefono del medico.</span>
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="col-md-3">
-										<input type="submit" name="btnAgregarHab" value="Buscar" id="btnAgregarHab" class="btn btn-primary">
+										<button id="btnRegistrar" type="submit" name="btnRegistrar" value= 'registrar' class="btn btn-primary" onclick="registrar()">Registrar</button>
 									</div>
 									<div class="col-md-3">
-										<input type="submit" name="btnAgregarHab" value="Guardar" id="btnAgregarHab" class="btn btn-primary">
+										<input type="submit" name="btnModificarMed" value="Modificar" id="btnModificarMed" class="btn btn-primary">
 									</div>
 									<div class="col-md-3">
-										<input type="submit" name="btnAgregarHab" value="Modificar" id="btnAgregarHab" class="btn btn-primary">
-									</div>
-									<div class="col-md-3">
-										<input type="submit" name="btnAgregarHab" value="Eliminar" id="btnAgregarHab" class="btn btn-primary">
+										<input type="submit" name="btnEliminarMed" value="Eliminar" id="btnEliminarMed" class="btn btn-primary">
 										
+									</div>
+									<div class="col-md-3">
+										<input type="submit" name="btnBuscarMed" value="Buscar" id="btnBuscarMed" class="btn btn-primary">
 									</div>
 									
                                 </div>
 							</div>
+							</form>
 						</section>	
 						<!-- end: page -->
 				</section>

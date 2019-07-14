@@ -29,46 +29,14 @@
 		<link rel="stylesheet" href="assets/stylesheets/skins/default.css" />
 
 		<!-- Theme Custom CSS -->
-		<link rel="stylesheet" href="assets/stylesheets/theme-custom.css"/>
-		<link rel="stylesheet" href="assets/vendor/pnotify/pnotify.custom.css"/>
+		<link rel="stylesheet" href="assets/stylesheets/theme-custom.css">
 
 		<!-- Head Libs -->
 		<script src="assets/vendor/modernizr/modernizr.js"></script>
 
-
-		<!--Import jQuery before export.js-->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-
-
-    <!--Data Table-->
-    <script type="text/javascript"  src=" https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-
-
-		<!--Prepara/Carga la tabla desde la base-->
-		<script>
-			jQuery(document).ready(function ($) {
-          $('#TbHab').DataTable({
-              "responsive": true,
-              "processing": true,
-              "serverSide": true,
-              "ajax": {
-                  url: "assets/php/habitaciones.php", // json datasource
-                  data: {action: 'consultar'}, // Set the POST variable  array and adds action: getEMP
-                  type: 'post',  // method  , by default get
-              },
-              error : function(response) {
-                var responseTextObject = jQuery
-                        .parseJSON(response.responseText);
-              }
-          });
-      });
-		</script>
-
 	</head>
 	<body>
-		<?php 
-		 	require_once("assets/php/habitaciones.php");
-		?>
+	<?php require_once("assets/php/medicos.php");?>
 		<section class="body">
 
 			<!-- start: header -->
@@ -120,7 +88,7 @@
 				
 					<div class="sidebar-header">
 						<div class="sidebar-title">
-							Menú
+							MenĂº
 						</div>
 						<div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
 							<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
@@ -137,13 +105,13 @@
 											<span>Expedientes</span>
 										</a>
 									</li>
-									<li>
+									<li class="nav-active">
 										<a href="doctores.html">
 											<i class="fa fa-home" aria-hidden="true"></i>
 											<span>Medicos</span>
 										</a>
 									</li>
-									<li class="nav-active">
+									<li>
 										<a href="habitaciones.html">
 											<i class="fa fa-home" aria-hidden="true"></i>
 											<span>Habitaciones</span>
@@ -171,110 +139,81 @@
 
 				<section role="main" class="content-body">
 					<header class="page-header">
-						<h2>Habitaciones</h2>
+						<h2>Medicos</h2>
 					</header>
 
-					<!-- start: page -->			
+					<!-- start: page -->
+					
+										
+										
 						<section class="panel">
 							<header class="panel-heading">
 								<div class="panel-actions">
 									<a href="#" class="fa fa-caret-down"></a>
 								</div>
 						
-								<h2 class="panel-title">Habitaciones</h2>
+								<h2 class="panel-title">Adiministra los medicos</h2>
 							</header>
+							
+							
+							<form id="formulario-registro" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" > 
 							<div class="panel-body">
-	
-										<div class="col-md-3 form-group">
-
-										<form id="form" method="POST" class="form-horizontal mb-lg" >
-										<a class="modal-with-form btn btn-primary" href="#HabForm" style="padding-left: 21px; padding-right: 22px;">Añadir Habitación</a> 
-									    </form>
-										<!-- Modal Form -->
-											<div id="HabForm" class="modal-block modal-block-primary mfp-hide">
-
-												<section class="panel">
-
-													<header class="panel-heading">
-														<h2 class="panel-title">Nueva habitación</h2>
-													</header>
-
-													<div class="panel-body">
-
-														<form id="formulario" method="POST" class="form-horizontal mb-lg" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-
-															<div class="form-group mt-lg">
-																<label class="col-sm-3 control-label">No. de Habitación</label>
-																<div class="col-sm-9">
-																	<input type="text" id="numhab" name="numhab" placeholder="Habitación" class="form-control" required/>
-																</div>
-															</div>
-
-															<div class="form-group">
-																<label class="col-sm-3 control-label">Descripción</label>
-																<div class="col-sm-9">
-																	<input type="text" id="desc" name="desc" class="form-control" placeholder="Descripción" required/>
-																</div>
-															</div>
-
-															<div class="form-group">
-																<label class="col-sm-3 control-label">Status</label>
-																<div class="col-sm-9">
-																	<select id="status" name="status" class="form-control mb-md">
-																		<option value="0">Seleccione un status</option>
-																		<option value="D">Disponible</option>
-																		<option value="O">Ocupado</option>
-																		<option value="S">Sucio</option>
-																	</select>	
-																</div>
-																<button type="submit" name="registrar" value= 'registrar' class="btn btn-primary" >Agregar</button>
-																<span><?php echo $res; ?></span>
-															</div>
-														</form>
-													</div>
-												</section>
-											</div>
-
-										</div>
-								
-										<div class="table-responsive">
-										<table id="TbHab" class="table table-bordered table-striped table-condensed mb-none" >
-										<thead>
-											<tr>
-												<th>Habitacion</th>
-												<th>Status</th>
-												<th>Descripción</th>
-											</tr>
-										</thead>
-										<tbody>
-										
-										</tbody>
-										</table>
-								        </div>
-
-								<div class="panel-body">
-									<div class="col-md-3" style="position:15px; margin-left:15px;">
-										<div class="table-responsive">
-											<table class="table table-bordered table-striped table-condensed mb-none">
-												<tbody>
-													<tr>
-														<td style="background-color:yellowgreen;color:white;">Verde</td>
-														<td>Disponible</td>
-													</tr>
-													<tr>
-														<td style="background-color:red;color:white;">Rojo</td>
-														<td>Ocupada</td>
-													</tr>
-													<tr>
-														<td style="background-color:gold;color:white;">Amarillo</td>
-														<td>Sucia</td>
-													</tr>
-												</tbody>
-											</table>
-										</div> 
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="inputDefault">No. de Cedula</label>
+									<div class="col-md-6">
+										<input type="text" class="form-control" id="inputDefault" name="cedula">
+										<span class="help-block">Capture la cedula del medico.</span>
 									</div>
 								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="inputDefault">Nombre</label>
+									<div class="col-md-6">
+										<input type="text" class="form-control" id="inputDefault" name="nombre">
+										<span class="help-block">Capture el nombre del medico.</span>
+									</div>
 								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="inputDefault">Apellidos</label>
+									<div class="col-md-6">
+										<input type="text" class="form-control" id="inputDefault" name="apellidos">
+										<span class="help-block">Capture los apellidos del medico.</span>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="inputDefault" name="direccion">Direccion</label>
+									<div class="col-md-6">
+										<input type="text" class="form-control" id="inputDefault" name="apellidos">
+										<span class="help-block">Capture la direccion del medico.</span>
+									</div>
+								</div>
+							
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="inputDefault">Telefono</label>
+									<div class="col-md-6">
+										<input type="text" class="form-control" id="inputDefault" name="telefono">
+										<span class="help-block">Capture el telefono del medico.</span>
+									</div>
+								</div>
+								<div class="col-md-12">
+								<div class="col-md-3">
+										<button id="btnRegistrar" type="submit" name="btnRegistrar" value= 'registrar' class="btn btn-primary" onclick="registrar()">Registrar</button>
+									</div>							
+									<div class="col-md-3">
+										<input type="submit" name="btnModificarMed" value="Modificar" id="btnModificarMed" class="btn btn-primary">
+									</div>
+									<div class="col-md-3">
+										<input type="submit" name="btnEliminarMed" value="Eliminar" id="btnEliminarMed" class="btn btn-primary">
+										
+									</div>
+									
+									<div class="col-md-3">
+										<input type="submit" name="btnBuscarMed" value="Buscar" id="btnBuscarMed" class="btn btn-primary">
+									</div>
+									
+                                </div>
+							</div>
+							</form>
 						</section>	
 						<!-- end: page -->
 				</section>
@@ -298,10 +237,18 @@
 		<script src="assets/javascripts/theme.custom.js"></script>
 		
 		<!-- Theme Initialization Files -->
+		
 		<script src="assets/javascripts/theme.init.js"></script>
+
 		<script src="assets/vendor/pnotify/pnotify.custom.js"></script>
 
+
+
 		<script src="assets/javascripts/ui-elements/examples.modals.js"></script>
+
+
+
+		<script src="assets/javascripts/habitaciones.js">></script>
 
 	</body>
 </html>
