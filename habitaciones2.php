@@ -48,6 +48,7 @@
 	</header>
 
 	<div class="panel-body">
+		<div class="form-horizontal mb-lg">
 			<div class="form-group mt-lg">
 				<label class="col-sm-3 control-label">No. de Habitación</label>
 				<div class="col-sm-9">
@@ -72,6 +73,7 @@
 								</div>
 								<button id="btnRegistrar" type="submit" name="registrar" value= 'registrar' class="btn btn-primary" onclick="registrar()">Agregar</button>
 							</div>
+		</div>
 </div>
 
 		<!-- Vendor -->

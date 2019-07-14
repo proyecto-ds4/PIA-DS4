@@ -186,34 +186,34 @@
 										<a class="modal-with-form btn btn-primary" href="#modalForm" style="padding-left: 21px; padding-right: 22px;">Añadir Paciente</a> 
 										<!-- Modal Form -->
 											<div id="modalForm" class="modal-block modal-block-primary mfp-hide">
-												<section class="panel">
+												<!--<section class="panel">-->
 													<header class="panel-heading">
 														<h2 class="panel-title">Nuevo Paciente</h2>
 													</header>
 													<div class="panel-body">
-														<form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
+														<div id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
 															<div class="form-group mt-lg">
 																<label class="col-sm-3 control-label">No. de Expediente</label>
 																<div class="col-sm-9">
-																	<input type="text" name="name" class="form-control" required/>
+																	<input id="txtExp" type="text" name="name" class="form-control" required/>
 																</div>
 															</div>
 															<div class="form-group">
 																<label class="col-sm-3 control-label">Nombres(s)</label>
 																<div class="col-sm-9">
-																	<input type="text" name="email" class="form-control" placeholder="Ingresa el nombre" required/>
+																	<input id="txtNombre" type="text" name="email" class="form-control" placeholder="Ingresa el nombre" required/>
 																</div>
 															</div>
 															<div class="form-group">
 																<label class="col-sm-3 control-label">Apellido Paterno</label>
 																<div class="col-sm-9">
-																	<input type="text" name="url" class="form-control" placeholder="Ingresa apellido paterno" />
+																	<input id="txtApePat" type="text" name="url" class="form-control" placeholder="Ingresa apellido paterno" />
 																</div>
 															</div>
 															<div class="form-group">
 																<label class="col-sm-3 control-label">Apellido Materno</label>
 																<div class="col-sm-9">
-																	<input type="text" name="url" class="form-control" placeholder="Ingresa apellido materno" />
+																	<input id="txtApeMat" type="text" name="url" class="form-control" placeholder="Ingresa apellido materno" />
 																</div>
 															</div>
 															<div class="form-group">
@@ -260,17 +260,18 @@
 																</div>
 															</div>
 															
-														</form>
+														</div>
 													</div>
 													<footer class="panel-footer">
 														<div class="row">
 															<div class="col-md-12 text-right">
-																<button class="btn btn-primary modal-confirm">Dar de Alta</button>
+																<button id="btnReg" class="btn btn-primary" onclick="registrar()">Dar de Alta</button>
 																<button class="btn btn-default modal-dismiss">Cancelar</button>
 															</div>
 														</div>
 													</footer>
-												</section>
+													<button id="btnRegistrar" onclick="registrar('Prueba', 'success','prueba')">Registrar</button>
+												<!--</section>-->
 											</div>
 										
 									</div>
@@ -332,6 +333,8 @@
 		
 		<!-- Examples -->
 		<script src="assets/javascripts/ui-elements/examples.modals.js"></script>
+
+		<script src="assets/javascripts/pacientes.js">></script>
 
 	</body>
 </html>

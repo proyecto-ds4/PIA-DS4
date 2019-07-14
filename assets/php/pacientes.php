@@ -1,21 +1,21 @@
 <?php
-	//INSERT INTO PACIENTES VALUES(EXPED,APE,DIR,STAT,FEC_NAC,TEL,HAB,DIAG,MED,1);
-	//$conexion=mysqli_connect("localhost","root","","urgencias") or die("Problemas con la conexión");
-	//$conexion = new PDO("localhost","root","","urgencias");
-	function insertarPaciente(){
-		$opc = 1;
-		$expediente = "1510003";
-		$nombre = "Diego Yahir";
-		$apellidos = "Bersoza Guerra";
-		$direccion = "Prueba";
-		$stat = 1;
-		$fecNac = "19940831";
-		$fecIng = "20190708";
-		$tel = "8112937424";
-		$numHab = 1;
-		$diag = 1;
-		$med = "1";
-		//Conexión BD
+
+	if ($_POST['opc'] = "registrar"){
+		$expediente = $_POST['expediente'];
+		$nombre = $_POST['nombre'];
+		$apellidos = $_POST['apellidos'];
+		$direccion = $_POST['direccion'];
+		$status = $_POST['status'];
+		$fecNac = $_POST['fechaN'];
+		$fecIng = $_POST['fechaI'];
+		$tel = $_POST['telefono'];
+		$numHab = $_POST['habitacion'];
+		$diag = $_POST['diagnostico'];
+		$med = $_POST['medico'];
+		echo insertarPaciente(1,$expediente,$nombre,$apellidos,$direccion,$status,$fecNac,$fecIng,$tel,$numHab,$diag,$med);
+	}
+
+	function insertarPaciente($opc,$expediente,$nombre,$apellidos,$direccion,$stat,$fecNac,$fecIng,$tel,$numHab,$diag,$med){
 		$usuario = "root";
 		$password = "";
 		$conexion = new mysqli("localhost", "root", "", "urgencias");
@@ -25,32 +25,20 @@
     		exit();
 		}
 		try{
-			//Se prepara el query
 			$stmt = $conexion->prepare("CALL SP_CRUD_PACIENTES(?,?,?,?,?,?,?,?,?,?,?,?,@res)");
-			//Se definen los valores de los parámetros, i = entero, s = string, d = double, b = es otra weaa
 			mysqli_stmt_bind_param($stmt, "issssisssiis", $opc, $expediente, $nombre, $apellidos, $direccion, $stat, $fecNac, $fecIng, $tel, $numHab, $diag, $med);
-			//Se ejecuta el statement
 			mysqli_stmt_execute($stmt);
-
-			// vincular las variables de resultados, esto tomaría el valor de una consulta que devuelve el mensaje y un resultado
 	    	$stmt->bind_result($msg, $res);
-
-	    	// obtiene los valores de todas las filas que haya devuelto el query de resultado y en este caso las imprime, pero estas se pueden guardar
 	    	while ($stmt->fetch()) {
-	        	printf ("%s ,%s\n", $msg, $res);
+	        	//printf ("%s ,%s\n", $msg, $res);
 	    	}
-	    	//Se termina el statement y cierra la conexión
 			mysqli_stmt_close($stmt);
-			//Esta parte obtiene tal cual el parámetro de salida "RES", 
-			$result = mysqli_query($conexion,'SELECT @RES');
-			list($res) = mysqli_fetch_row($result); //Esta parte guarda el valor del resultado en la variable res
-			mysqli_free_result($result); //Y esto libera la variable de result, que es como un resultSet
+			$respuesta = $res." ".$msg;
+
+			return $respuesta;
 		}
 		catch(mysqi_sql_exception $e){
 			echo "Error: " . $e.getMessage();
 		}
-	}
-	function imprimir(){
-		insertarPaciente();
 	}
 ?>
