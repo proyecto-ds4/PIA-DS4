@@ -88,7 +88,7 @@
 				
 					<div class="sidebar-header">
 						<div class="sidebar-title">
-							Menú
+							MenĂº
 						</div>
 						<div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
 							<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
@@ -179,6 +179,7 @@
 										<span class="help-block">Capture los apellidos del medico.</span>
 									</div>
 								</div>
+								
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="inputDefault" name="direccion">Direccion</label>
 									<div class="col-md-6">
@@ -186,8 +187,7 @@
 										<span class="help-block">Capture la direccion del medico.</span>
 									</div>
 								</div>
-								
-								
+							
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="inputDefault">Telefono</label>
 									<div class="col-md-6">
@@ -196,9 +196,9 @@
 									</div>
 								</div>
 								<div class="col-md-12">
-									<div class="col-md-3">
+								<div class="col-md-3">
 										<button id="btnRegistrar" type="submit" name="btnRegistrar" value= 'registrar' class="btn btn-primary" onclick="registrar()">Registrar</button>
-									</div>
+									</div>							
 									<div class="col-md-3">
 										<input type="submit" name="btnModificarMed" value="Modificar" id="btnModificarMed" class="btn btn-primary">
 									</div>
@@ -206,6 +206,7 @@
 										<input type="submit" name="btnEliminarMed" value="Eliminar" id="btnEliminarMed" class="btn btn-primary">
 										
 									</div>
+									
 									<div class="col-md-3">
 										<input type="submit" name="btnBuscarMed" value="Buscar" id="btnBuscarMed" class="btn btn-primary">
 									</div>
@@ -236,7 +237,18 @@
 		<script src="assets/javascripts/theme.custom.js"></script>
 		
 		<!-- Theme Initialization Files -->
+		
 		<script src="assets/javascripts/theme.init.js"></script>
+
+		<script src="assets/vendor/pnotify/pnotify.custom.js"></script>
+
+
+
+		<script src="assets/javascripts/ui-elements/examples.modals.js"></script>
+
+
+
+		<script src="assets/javascripts/habitaciones.js">></script>
 
 	</body>
 </html>
