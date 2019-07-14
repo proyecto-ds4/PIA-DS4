@@ -145,10 +145,7 @@
 						<h2>Habitaciones</h2>
 					</header>
 
-					<!-- start: page -->
-					
-										
-										
+					<!-- start: page -->			
 						<section class="panel">
 							<header class="panel-heading">
 								<div class="panel-actions">
@@ -168,9 +165,9 @@
 											</tr>
 										</thead>
 
-									<div class="col-md-3 form-group">
+										<div class="col-md-3 form-group">
 
-										<form id="form" method="POST" class="form-horizontal mb-lg"  action="">
+										<form id="form" method="POST" class="form-horizontal mb-lg" >
 										<a class="modal-with-form btn btn-primary" href="#HabForm" style="padding-left: 21px; padding-right: 22px;">Añadir Habitación</a> 
 									    </form>
 										<!-- Modal Form -->
@@ -184,7 +181,7 @@
 
 													<div class="panel-body">
 
-														<form id="formulario" method="POST" class="form-horizontal mb-lg" action="habitaciones.php">
+														<form id="formulario" method="POST" class="form-horizontal mb-lg" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 
 															<div class="form-group mt-lg">
 																<label class="col-sm-3 control-label">No. de Habitación</label>
@@ -210,7 +207,7 @@
 																		<option value="S">Sucio</option>
 																	</select>	
 																</div>
-																<button type="submit" name="registrar" value= 'registrar' class="btn btn-primary modal-confirm" >Agregar</button>
+																<button type="submit" name="registrar" value= 'registrar' class="btn btn-primary" >Agregar</button>
 																<span><?php echo $res; ?></span>
 															</div>
 														</form>
@@ -218,6 +215,8 @@
 												</section>
 											</div>
 										</div>
+
+									
 									</table>
 								</div>
 								
