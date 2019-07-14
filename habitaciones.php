@@ -35,6 +35,35 @@
 		<!-- Head Libs -->
 		<script src="assets/vendor/modernizr/modernizr.js"></script>
 
+
+		<!--Import jQuery before export.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+
+    <!--Data Table-->
+    <script type="text/javascript"  src=" https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+
+		<!--Prepara/Carga la tabla desde la base-->
+		<script>
+			jQuery(document).ready(function ($) {
+          $('#TbHab').DataTable({
+              "responsive": true,
+              "processing": true,
+              "serverSide": true,
+              "ajax": {
+                  url: "assets/php/habitaciones.php", // json datasource
+                  data: {action: 'consultar'}, // Set the POST variable  array and adds action: getEMP
+                  type: 'post',  // method  , by default get
+              },
+              error : function(response) {
+                var responseTextObject = jQuery
+                        .parseJSON(response.responseText);
+              }
+          });
+      });
+		</script>
+
 	</head>
 	<body>
 		<?php 
@@ -155,16 +184,7 @@
 								<h2 class="panel-title">Habitaciones</h2>
 							</header>
 							<div class="panel-body">
-							
-								<div class="table-responsive">
-									<table class="table table-bordered table-striped table-condensed mb-none">
-										<thead>
-											<tr>
-												<th>Habitacion</th>
-												<th>Paciente</th>
-											</tr>
-										</thead>
-
+	
 										<div class="col-md-3 form-group">
 
 										<form id="form" method="POST" class="form-horizontal mb-lg" >
@@ -214,17 +234,26 @@
 													</div>
 												</section>
 											</div>
-										</div>
 
-									
-									</table>
-								</div>
+										</div>
 								
+										<div class="table-responsive">
+										<table id="TbHab" class="table table-bordered table-striped table-condensed mb-none" >
+										<thead>
+											<tr>
+												<th>Habitacion</th>
+												<th>Status</th>
+												<th>Descripción</th>
+											</tr>
+										</thead>
+										<tbody>
+										
+										</tbody>
+										</table>
+								        </div>
+
 								<div class="panel-body">
-									<div class="col-md-6 right">
-										<input type="submit" name="btnAgregarHab" value="Agregar" id="btnAgregarHab" class="btn btn-primary">
-									</div>
-									<div class="col-md-3 col-md-offset-3">
+									<div class="col-md-3" style="position:15px; margin-left:15px;">
 										<div class="table-responsive">
 											<table class="table table-bordered table-striped table-condensed mb-none">
 												<tbody>
@@ -245,7 +274,7 @@
 										</div> 
 									</div>
 								</div>
-							</div>
+								</div>
 						</section>	
 						<!-- end: page -->
 				</section>

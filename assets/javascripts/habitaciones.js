@@ -1,18 +1,14 @@
 
-function registrar(){
 
-	$.ajax ({
-		type: 'POST', //aqui depende la funcion que se le dara POST o GET
-		url: 'assets/php/habitaciones.php', //ruta de la funcion php
-		data: {id:1, otrovalor: 'valor'}, //datos
-		success:function(data){
-			console.log("Se llamo bien");
+    $.ajax({
+    url: "assets/php/habitaciones.php",
+    type: "POST",
+    data: {action: 'consulta'},
+    success: function(output) {
+    	alert (output);
+             // En caso de que se ejecute
+            /*$('#TbHab > tbody').html(data);*/
+       }
+    });
+   
 
-		},
-		error:function(data){
-			console.log("fallo tu chingadera");
-		}
-	}
-		);
-	k
-}
