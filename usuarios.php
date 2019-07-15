@@ -2,7 +2,9 @@
 <!doctype html>
 <html class="fixed">
 	<head>
-
+	     
+		<script src="assets/javascripts/user.js"></script>
+	    
 		<!-- Basic -->
 		<meta charset="UTF-8">
 
@@ -34,10 +36,14 @@
 
 		<!-- Head Libs -->
 		<script src="assets/vendor/modernizr/modernizr.js"></script>
+	
 
 	</head>
 	<body>
-	</form method="post" action="assets/php/usuarios.php";
+	<?php
+		require_once("assets/php/user.php");
+	?>
+	<form method="post" action="assets/php/user.php">
 		<section class="body">
 
 			<!-- start: header -->
@@ -158,36 +164,32 @@
 							
 						
 							<div class="panel-body">
-                             <form method="post" action="usuarios.php">
+							<form method="post" action="<?php echo htmlspecialchars($_REQUEST['PHP_SELF']);?>">
 								<div class = "row">
 									<div class="col-md-3">
-										<select multiple="" class="form-control" style="height: 314px;">
-												<option>Usuario 1</option>
-												<option>Usuario 2</option>
-												<option>Usuario 3</option>
-												<option>Usuario 4</option>
-												<option>Usuario 5</option>
-										</select>
+										<?php cargaruser(); ?>
 									</div>
+							</form>
+							
 									<div class="col-md-9">
 										<div class="form-group">
 											<label class="col-md-3 control-label" for="inputDefault">Nombre</label>
 											<div class="col-md-6">
-												<input type="text" class="form-control" id="inputDefault" name="name">
+												<input type="text" id= "name" class="form-control" id="inputDefault" name="name" >
 												<span class="help-block">Capture el nombre de usuario.</span>
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-md-3 control-label" for="inputDefault">Contraseña</label>
 											<div class="col-md-6">
-												<input type="text" class="form-control" id="inputDefault" name="pass">
+												<input type="password" id="pass" class="form-control" id="inputDefault" name="pass" >
 												<span class="help-block">Capture la contraseña del usuario.</span>
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-md-3 control-label" for="inputDefault">Confirme contraseña</label>
 											<div class="col-md-6">
-												<input type="text" class="form-control" id="inputDefault" name="pass2">
+												<input type="password" class="form-control" id="inputDefault" name="pass2" >
 												<span class="help-block">Confirme la contraseña capturada.</span>
 											</div>
 										</div>
@@ -198,12 +200,13 @@
 													<span class="input-group-addon">
 														<i class="fa fa-calendar"></i>
 													</span>
-													<input type="text" data-plugin-datepicker="" class="form-control" name="date">
-												</div>
+													<input type="text" id="date" data-plugin-datepicker="" class="form-control" name="date" >
+												</div>		
 												<span class="help-block">Capture la fecha de alta.</span>
 											</div>
 										</div>	
 									</div>
+									
 								</div>
 									
 								<div class = "row">
@@ -212,7 +215,7 @@
 											<input type="submit" name="btnBuscarUser" value="Buscar" id="btnBuscarUser" class="btn btn-primary">
 										</div>
 										<div class="col-md-3">
-											<input type="submit" name="btnAgregarUser" value="Guardar" id="btnAgregarUser" class="btn btn-primary">
+											<input type="submit" name="btnAgregarUser" value="Guardar" id="btnAgregarUser" class="btn btn-primary" onclick="this.form.submit">
 										</div>
 										<div class="col-md-3">
 											<input type="submit" name="btnModificarUser" value="Modificar" id="btnModificarUser" class="btn btn-primary">
@@ -232,7 +235,10 @@
 			</div>
 
 		</section>
+	</form>
+	<div class="col-md-3">
 
+										</div>
 		<!-- Vendor -->
 		<script src="assets/vendor/jquery/jquery.js"></script>
 		<script src="assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
@@ -250,6 +256,6 @@
 		
 		<!-- Theme Initialization Files -->
 		<script src="assets/javascripts/theme.init.js"></script>
-</form>
+		
 	</body>
 </html>
