@@ -8,55 +8,69 @@ function notifyUser(title, type, msg) {
 }
 
 function registrar() {
-	//var path = 'assets/php/medicos.php';
+	var path = 'assets/php/medicos.php';
 	var btn = "registrar";
 	var ced = document.getElementById("iCedula").value;
 	var nom = document.getElementById("iNombre").value; //Obtiene el valor del control por medio del ID
-	var ape = document.getElementById("iApellido").value;
+	var ape = document.getElementById("iApellidos").value;
 	var dir = document.getElementById("iDireccion").value;
-	var tel = document.getElementById("iTel").value;
-	console.log(btn,ced,nom,ape,dir,tel);
-	//$.ajax({
-	//	type:'POST',
-	//	url:path,
-	//	data: {opc: btn, cedula: ced, nombre: nom, apellidos: ape, direccion: dir, telefono: tel}, //Aquí le pasa los datos al file de php que los puede leer por el $_POST
-	//	success:function(response){ //Se devuelve el echo que de el script
-	//	if (response.substring(0,1) == '1') { //Si el primer caracter es 1, quiere decir que todo salió bien
-	//		location.reload();
-	//		notifyUser('Éxito!','success',response.substring(2)); //Aquí manda a llamar la funcion que muestra la notificacion de resultado
-	//	} //Se le pasa el titulo, tipo(o sea error, correcto, etc) y el response.substring le pasa el resultado que dió la base
-	//	else{ //Sino hay algun error
-	//		notifyUser('Error!','error',response.substring(2));
-	//	}
-	//	},
-	//	error:function(){
-	//		alert("Error al ejecutar la funcion");
-	//	}
-	//});
+	var tel = document.getElementById("iTelefono").value;
+	$.ajax({
+		type:'POST',
+		url:path,
+		data: {opc: btn, cedula: ced, nombre: nom, apellidos: ape, direccion: dir, telefono: tel}, //Aquí le pasa los datos al file de php que los puede leer por el $_POST
+		success:function(response){ //Se devuelve el echo que de el script
+		if (response.substring(0,3).includes('1')) { //Si el primer caracter es 1, quiere decir que todo salió bien
+			localStorage.setItem("title",'Éxito!');
+			localStorage.setItem("type",'success');
+			localStorage.setItem("msg",response.substring(4));
+			location.reload();
+			//notifyUser('Éxito!','success',response.substring(4)); //Aquí manda a llamar la funcion que muestra la notificacion de resultado
+		} //Se le pasa el titulo, tipo(o sea error, correcto, etc) y el response.substring le pasa el resultado que dió la base
+		else{ //Sino hay algun error
+			localStorage.setItem("title",'Error!');
+			localStorage.setItem("type",'error');
+			localStorage.setItem("msg",response.substring(4));
+			location.reload();
+			//notifyUser('Error!','error',response.substring(4));
+		}
+		},
+		error:function(){
+			alert("Error al ejecutar la funcion");
+		}
+	});
 }
 
 function modificar() {
 	var path = 'assets/php/medicos.php';
-	var btn = document.getElementById("btnModificar").value; //Obtiene el valor del control por medio del ID
-	var nom = document.getElementById("nombre").value; //Obtiene el valor del control por medio del ID
-	var ape = document.getElementById("apellidos").value;
-	var dir = document.getElementById("direccion").value;
-	var tel = document.getElementById("telefono").value;
-	var cedula = document.getElementById("cedula").value;
+	var btn = "modificar";
+	var ced = document.getElementById("mdCedula").value;
+	var nom = document.getElementById("mdNombre").value;
+	var ape = document.getElementById("mdApellidos").value;
+	var dir = document.getElementById("mdDireccion").value;
+	var tel = document.getElementById("mdTelefono").value;
 	$.ajax({
 		type:'POST',
 		url:path,
-		data: {opc: btn, cedula: cedula, nombre: nom, apellidos: ape, direccion: dir, telefono: tel}, //Aquí le pasa los datos al file de php que los puede leer por el $_POST
+		data: {opc: btn, cedula: ced, nombre: nom, apellidos: ape, direccion: dir, telefono: tel}, //Aquí le pasa los datos al file de php que los puede leer por el $_POST
 		success:function(response){ //Se devuelve el echo que de el script
-		if (response.substring(0,1) == '1') { //Si el primer caracter es 1, quiere decir que todo salió bien
-		notifyUser('Éxito!','success',response.substring(2)); //Aquí manda a llamar la funcion que muestra la notificacion de resultado
+		if (response.substring(0,3).includes('1')) { //Si el primer caracter es 1, quiere decir que todo salió bien
+			localStorage.setItem("title",'Éxito!');
+			localStorage.setItem("type",'success');
+			localStorage.setItem("msg",response.substring(4));
+			location.reload();
+			//notifyUser('Éxito!','success',response.substring(4)); //Aquí manda a llamar la funcion que muestra la notificacion de resultado
 		} //Se le pasa el titulo, tipo(o sea error, correcto, etc) y el response.substring le pasa el resultado que dió la base
 		else{ //Sino hay algun error
-		notifyUser('Error!','error',response.substring(2));
+			localStorage.setItem("title",'Error!');
+			localStorage.setItem("type",'error');
+			localStorage.setItem("msg",response.substring(4));
+			location.reload();
+			//notifyUser('Error!','error',response.substring(4));
 		}
 		},
 		error:function(){
-		alert("Error al ejecutar la funcion");
+			alert("Error al ejecutar la funcion");
 		}
 	});
 }

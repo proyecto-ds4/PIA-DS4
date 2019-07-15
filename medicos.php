@@ -22,6 +22,9 @@
 		<link rel="stylesheet" href="assets/vendor/magnific-popup/magnific-popup.css" />
 		<link rel="stylesheet" href="assets/vendor/bootstrap-datepicker/css/datepicker3.css" />
 
+		<!-- Specific Page Vendor CSS -->
+		<link rel="stylesheet" href="assets/vendor/pnotify/pnotify.custom.css" />
+
 		<!-- Theme CSS -->
 		<link rel="stylesheet" href="assets/stylesheets/theme.css" />
 
@@ -217,38 +220,38 @@
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="inputDefault">No. de Cedula</label>
 													<div class="col-md-6">
-														<input id="mdCedula" ype="text" class="form-control" id="inputDefault" name="modCedula" readonly="readonly">
+														<input id="mdCedula" ype="text" class="form-control" id="mCedula" name="mCedula" readonly="readonly">
 													</div>
 												</div>
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="inputDefault">Nombre</label>
 													<div class="col-md-6">
-														<input id="mdNombre" type="text" class="form-control" id="inputDefault" name="ModNombre" required>
+														<input id="mdNombre" type="text" class="form-control" id="mNombre" name="mNombre" required>
 													</div>
 												</div>
 												<div class="form-group">
 												<label class="col-md-3 control-label" for="inputDefault">Apellidos</label>
 													<div class="col-md-6">
-														<input id="mdApellidos" type="text" class="form-control" id="inputDefault" name="ModApellidos" required>
+														<input id="mdApellidos" type="text" class="form-control" id="mApellidos" name="mApellidos" required>
 													</div>
 												</div>
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="inputDefault" name="direccion">Direccion</label>
 													<div class="col-md-6">
-														<input id="mdDireccion" type="text" class="form-control" id="inputDefault" name="modDireccion" required>
+														<input id="mdDireccion" type="text" class="form-control" id="mDireccion" name="mDireccion" required>
 													</div>
 												</div>
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="inputDefault">Telefono</label>
 													<div class="col-md-6">
-														<input id="mdTelefono" type="text" class="form-control" id="inputDefault" name="modTelefono" required>
+														<input id="mdTelefono" type="text" class="form-control" id="mTelefono" name="mTelefono" required>
 													</div>
 												</div>
 										</div>
 										<footer class="panel-footer">
 											<div class="row">
 												<div class="col-md-12 text-right">
-													<button id="btnReg" class="btn btn-primary" onclick="">Guardar</button>
+													<button id="btnReg" class="btn btn-primary" onclick="modificar()">Guardar</button>
 													<button class="btn btn-default modal-dismiss">Cancelar</button>
 												</div>
 											</div>
@@ -302,10 +305,13 @@
 		<!-- Theme Initialization Files -->
 		<script src="assets/javascripts/theme.init.js"></script>
 
+		<script src="assets/vendor/pnotify/pnotify.custom.js"></script>
+
 		<script src="assets/javascripts/ui-elements/examples.modals.js"></script>
 
 		<script src="assets/javascripts/custoMedico.js"></script>
 		<script src="assets/javascripts/medicos.js"></script>
+		<script src="assets/javascripts/delMedico.js"></script>
 
 	</body>
 </html>

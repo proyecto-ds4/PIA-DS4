@@ -1,16 +1,23 @@
-
 <?php
-	//INSERT INTO MEDICOS VALUES(cedula,nombre,apellidos,direccion,telefono);
-	//$conexion=mysqli_connect("localhost","root","","urgencias") or die("Problemas con la conexión");
-	//$conexion = new PDO("localhost","root","","urgencias");
-	if($_POST['opc'] == "registrar")
-	{
+	if($_POST['opc'] == "registrar"){
 		$cedula = $_POST['cedula'];
 		$nombre = $_POST['nombre'];
 		$apellidos = $_POST['apellidos'];
 		$direccion = $_POST['direccion'];
 		$telefono = $_POST['telefono'];
-		//echo medicos(1,$cedula,$nombre,$apellidos,$direccion,$telefono);
+		echo medicos(1,$cedula,$nombre,$apellidos,$direccion,$telefono);
+	}
+	elseif($_POST['opc'] == "eliminar") {
+		$cedula = $_POST['cedula'];
+		echo medicos(4,$cedula,null,null,null,null);
+	}
+	elseif($_POST['opc'] == "modificar") {
+		$cedula = $_POST['cedula'];
+		$nombre = $_POST['nombre'];
+		$apellidos = $_POST['apellidos'];
+		$direccion = $_POST['direccion'];
+		$telefono = $_POST['telefono'];
+		echo medicos(3,$cedula,$nombre,$apellidos,$direccion,$telefono);
 	}
 
 	function medicos($opcion, $cedula, $nombre, $apellidos, $direccion, $telefono){
@@ -25,13 +32,12 @@
 			$stmt = $conexion->prepare("CALL SP_CRUD_MEDICOS(?,?,?,?,?,?,@res)");
 			mysqli_stmt_bind_param($stmt, "isssss", $opcion, $cedula, $nombre, $apellidos, $direccion, $telefono);
 			mysqli_stmt_execute($stmt);
-	    	$stmt->bind_result($msg, $res);
+	    	$stmt->bind_result($msg,$res);
 	    	while ($stmt->fetch()) {
 	        	//printf ("%s ,%s\n", $msg, $res);
 	    	}
 			mysqli_stmt_close($stmt);
-			$respuesta = $res." ".$msg;
-
+			$respuesta=$res." ".$msg;
 			return $respuesta;
 		}
 		catch(mysqi_sql_exception $e){
