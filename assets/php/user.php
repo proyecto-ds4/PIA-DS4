@@ -26,7 +26,7 @@ $fecha = "";
 		  
 		  
 		  
-	  }
+	  
 	  
 	  if(isset($_POST['btnModificarUser']))
 	  {
