@@ -1,21 +1,37 @@
 <?php
 
-	if ($_POST['opc'] = "registrar"){
+	if ($_POST['opc'] == "registrar"){
 		$expediente = $_POST['expediente'];
 		$nombre = $_POST['nombre'];
 		$apellidos = $_POST['apellidos'];
 		$direccion = $_POST['direccion'];
-		$status = $_POST['status'];
+		$status = $_POST['estado'];
 		$fecNac = $_POST['fechaN'];
-		$fecIng = $_POST['fechaI'];
+		$fecNac = date_format(date_create_from_format('m/d/Y', $fecNac), 'Ymd');
+		$today = date("Ymd"); 
 		$tel = $_POST['telefono'];
 		$numHab = $_POST['habitacion'];
 		$diag = $_POST['diagnostico'];
 		$med = $_POST['medico'];
-		echo insertarPaciente(1,$expediente,$nombre,$apellidos,$direccion,$status,$fecNac,$fecIng,$tel,$numHab,$diag,$med);
+		echo pacientes(1,$expediente,$nombre,$apellidos,$direccion,$status,$fecNac,$today,$tel,$numHab,$diag,$med);
+	}
+	elseif ($_POST['opc'] == "modificar"){
+		$expediente = $_POST['expediente'];
+		$nombre = $_POST['nombre'];
+		$apellidos = $_POST['apellidos'];
+		$direccion = $_POST['direccion'];
+		$status = $_POST['estado'];
+		$fecNac = $_POST['fechaN'];
+		$fecNac = date_format(date_create_from_format('Y-m-d', $fecNac), 'Ymd');
+		$today = date("Ymd"); 
+		$tel = $_POST['telefono'];
+		$numHab = $_POST['habitacion'];
+		$diag = $_POST['diagnostico'];
+		$med = $_POST['medico'];
+		echo pacientes(3,$expediente,$nombre,$apellidos,$direccion,$status,$fecNac,$today,$tel,$numHab,$diag,$med);
 	}
 
-	function insertarPaciente($opc,$expediente,$nombre,$apellidos,$direccion,$stat,$fecNac,$fecIng,$tel,$numHab,$diag,$med){
+	function pacientes($opc,$expediente,$nombre,$apellidos,$direccion,$status,$fecNac,$today,$tel,$numHab,$diag,$med){
 		$usuario = "root";
 		$password = "";
 		$conexion = new mysqli("localhost", "root", "", "urgencias");
@@ -26,7 +42,7 @@
 		}
 		try{
 			$stmt = $conexion->prepare("CALL SP_CRUD_PACIENTES(?,?,?,?,?,?,?,?,?,?,?,?,@res)");
-			mysqli_stmt_bind_param($stmt, "issssisssiis", $opc, $expediente, $nombre, $apellidos, $direccion, $stat, $fecNac, $fecIng, $tel, $numHab, $diag, $med);
+			mysqli_stmt_bind_param($stmt, "issssssssiis", $opc, $expediente, $nombre, $apellidos, $direccion, $status, $fecNac, $today, $tel, $numHab, $diag, $med);
 			mysqli_stmt_execute($stmt);
 	    	$stmt->bind_result($msg, $res);
 	    	while ($stmt->fetch()) {

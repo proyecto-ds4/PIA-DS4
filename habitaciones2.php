@@ -71,7 +71,7 @@
 											<option value="S">Sucio</option>
 										</select>	
 								</div>
-								<button id="btnRegistrar" type="submit" name="registrar" value= 'registrar' class="btn btn-primary" onclick="registrar()">Agregar</button>
+								<button id="btnRegistrar" type="submit" name="registrar" value= 'registrar' class="btn btn-primary" onclick="confirma()">Agregar</button>
 							</div>
 		</div>
 </div>

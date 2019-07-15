@@ -7,28 +7,55 @@
                     <center><h4 class="modal-title" id="myModalLabel">Modificar Paciente</h4></center>
                 </div>
                 <div class="modal-body">
-				<form class="form-horizontal mb-lg" novalidate="novalidate" action="Update.php" id="formulario" method="POST" name="formulario">
-					<div class="container-fluid">
+				<div class="container-fluid">
+						<div class="form-group input-group">
+							<span class="input-group-addon" style="width:150px;">No. Expediente:</span>
+							<input type="text" style="width:350px;" class="form-control" id="eid" name="idu" readonly="readonly">
+						</div>
 						<div class="form-group input-group">
 							<span class="input-group-addon" style="width:150px;">Nombres:</span>
 							<input type="text" style="width:350px;" class="form-control" id="enombre" name="nombrePacienteu">
 						</div>
 						<div class="form-group input-group">
 							<span class="input-group-addon" style="width:150px;">Apellidos:</span>
-							<input type="text" style="width:350px;" class="form-control" id="edireccion" name="diagnosticou">
+							<input type="text" style="width:350px;" class="form-control" id="eapellidos" name="diagnosticou">
 						</div>
 						<div class="form-group input-group">
 							<span class="input-group-addon" style="width:150px;">Dirección:</span>
-							<input type="text" style="width:350px;" class="form-control" id="eEmail" name="rdoEstadou">
-						</div>					
+							<input type="text" style="width:350px;" class="form-control" id="edireccion" name="rdoEstadou">
+						</div>
+						<div class="form-group input-group">
+							<span class="input-group-addon" style="width:150px;">Estado:</span>
+							<input type="text" style="width:350px;" class="form-control" id="eestado" name="rdoEstadou">
+						</div>	
+						<div class="form-group input-group">
+							<span class="input-group-addon" style="width:150px;">Fecha Nacimiento:</span>
+							<input type="text" style="width:350px;" class="form-control" id="enacimiento" name="rdoEstadou">
+						</div>	
+						<div class="form-group input-group">
+							<span class="input-group-addon" style="width:150px;">Telefono:</span>
+							<input type="text" style="width:350px;" class="form-control" id="etelefono" name="rdoEstadou">
+						</div>	
+						<div class="form-group input-group">
+							<span class="input-group-addon" style="width:150px;">Habitacion:</span>
+							<input type="text" style="width:350px;" class="form-control" id="ehabitacion" name="rdoEstadou">
+						</div>	
+						<div class="form-group input-group">
+							<span class="input-group-addon" style="width:150px;">Diagnostico:</span>
+							<input type="text" style="width:350px;" class="form-control" id="ediagnostico" name="rdoEstadou">
+						</div>	
+						<div class="form-group input-group">
+							<span class="input-group-addon" style="width:150px;">Medico:</span>
+							<input type="text" style="width:350px;" class="form-control" id="emedico" name="rdoEstadou">
+						</div>	
 					</div>
 					</div>
 					<div class="modal-footer">
-						
+						<button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
 						<input class="btn btn-primary " id="enviar" name="guardar" type="submit" value="Actualizar"/>
-				</form>
-				<button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
-				<button type="button" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span> </i> Actualizar</button>
+				
+				<button id="btnModificar" value = "modificar" onclick="modificar()">Guardar Cambios</button>
+				<!--<button type="button" id="enviar" name="guardar" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span> </i> Actualizar</button>-->
                 </div>
             </div>
         </div>

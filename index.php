@@ -1,7 +1,7 @@
 <?php
-include "conex.php";
+require_once("assets/php/conex.php");
 $link  = conectarse();
-$sql = "select * from prueba";
+$sql = "SELECT * FROM pacientes";
 $resul = mysqli_query($link, $sql);
 ?>
 
@@ -43,26 +43,11 @@ $resul = mysqli_query($link, $sql);
 
 		<!-- Head Libs -->
 		<script src="assets/vendor/modernizr/modernizr.js"></script>
+		
 
 	</head>
 	<body>
-			<?php
-				if(isset($_GET['aksi']) == 'delete'){
-					// escaping, additionally removing everything that could be (html/javascript-) code
-					$nik = mysqli_real_escape_string($con,(strip_tags($_GET["nik"],ENT_QUOTES)));
-					$cek = mysqli_query($con, "SELECT * FROM empleados WHERE codigo='$nik'");
-					if(mysqli_num_rows($cek) == 0){
-						echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> No se encontraron datos.</div>';
-					}else{
-						$delete = mysqli_query($con, "DELETE FROM empleados WHERE codigo='$nik'");
-						if($delete){
-							echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> Datos eliminado correctamente.</div>';
-						}else{
-							echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> Error, no se pudo eliminar los datos.</div>';
-						}
-					}
-				}
-			?>
+	
 		<section class="body">
 
 			<!-- start: header -->
@@ -198,99 +183,154 @@ $resul = mysqli_query($link, $sql);
 										</div>
 										<div class="col-md-2">
 										</div>
-										<div class="col-md-3 form-group">
-										<a class="modal-with-form btn btn-primary" href="#modalForm" style="padding-left: 21px; padding-right: 22px;">Añadir Paciente</a> 
-										</div>
 									</form>
+										<div class="col-md-3 form-group">
+											<a class="modal-with-form btn btn-primary" href="#modalForm" style="padding-left: 21px; padding-right: 22px;">Añadir Paciente</a> 
+										</div>
 									
 									<!-- Modal Form -->
 											<div id="modalForm" class="modal-block modal-block-primary mfp-hide">
-												<section class="panel">
+												<!--<section class="panel">-->
 													<header class="panel-heading">
 														<h2 class="panel-title">Nuevo Paciente</h2>
 													</header>
 													<div class="panel-body">
-														<form class="form-horizontal mb-lg" novalidate="novalidate" action="Insert.php" id="formulario" method="POST" name="formulario">
 															<div class="form-group mt-lg">
 																<label class="col-sm-3 control-label">No. de Expediente</label>
 																<div class="col-sm-9">
-																	<input type="text" name="numExpediente" class="form-control" required/>
+																	<input type="text" id="txtExp" placeholder="Ingresa el numero de expediente" name="numExpediente" class="form-control" required />
 																</div>
 															</div>
 															<div class="form-group">
 																<label class="col-sm-3 control-label">Nombres(s)</label>
 																<div class="col-sm-9">
-																	<input type="text" name="nombrePaciente" class="form-control" placeholder="Ingresa el nombre" required/>
+																	<input type="text" id="txtNombre" name="nombrePaciente" class="form-control" placeholder="Ingresa el nombre" required />
 																</div>
 															</div>
 															<div class="form-group">
-																<label class="col-sm-3 control-label">Apellido Paterno</label>
+																<label class="col-sm-3 control-label">Apellidos</label>
 																<div class="col-sm-9">
-																	<input type="text" name="apellidoPaterno" class="form-control" placeholder="Ingresa apellido paterno" />
+																	<input type="text" id ="txtApellido" name="apellidoPaciente" class="form-control" placeholder="Ingresa los apellidos" required />
 																</div>
 															</div>
 															<div class="form-group">
-																<label class="col-sm-3 control-label">Apellido Materno</label>
+																<label class="col-sm-3 control-label">Direccion</label>
 																<div class="col-sm-9">
-																	<input type="text" name="apellidoMaterno" class="form-control" placeholder="Ingresa apellido materno" />
+																	<textarea class="form-control" id="txtDireccion" name="direccion" placeholder="Ingresa la direccion" rows="3" data-plugin-textarea-autosize="" style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 74px;" required></textarea>
 																</div>
 															</div>
 															<div class="form-group">
-																<label class="col-sm-3 control-label">Diagnostico</label>
+																<label class="col-sm-3 control-label">Estado</label>
 																<div class="col-sm-9">
-																	<input type="text" name="diagnostico" class="form-control" placeholder="Ingresa el diagnostico del paciente" />
+																	<div class="radio-custom radio-primary">
+																		<input type="radio"  name="rdoEstado" value="Sin Riesgo" required />
+																		<label>Sin Riesgo</label>
+																	</div>
+								
+																	<div class="radio-custom radio-success">
+																		<input type="radio" name="rdoEstado" value="Bajo Riesgo" />
+																		<label>Bajo Riesgo</label>
+																	</div>
+								
+																	<div class="radio-custom radio-warning">
+																		<input type="radio" name="rdoEstado" value="Mediano Riesgo" />
+																		<label>Mediano Riesgo</label>
+																	</div>
+								
+																	<div class="radio-custom radio-danger">
+																		<input type="radio" name="rdoEstado" value="Alto Riesgo" />
+																		<label >Alto Riesgo</label>
+																	</div>
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="col-sm-3 control-label" >Fecha de Nacimiento</label>
+																<div class="col-sm-9">
+																	<div class="input-group">
+																		<span class="input-group-addon">
+																			<i class="fa fa-calendar"></i>
+																		</span>
+																		<input type="text" id="dtpNac" name="fechaNacimiento" data-plugin-datepicker="" class="form-control" required>
+																	</div>
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="col-sm-3 control-label">Telefono</label>
+																<div class="col-sm-9">
+																	<input type="text" id="txtTel" name="telefono" class="form-control" placeholder="Ingresa el telefono del paciente" required />
 																</div>
 															</div>
 															<div class="form-group">
 																<label class="col-sm-3 control-label">Habitacion</label>
 																<div class="col-sm-9">
-																	<select class="form-control mb-md" name = "numHabitacion">
-																		<option>204</option>
-																		<option>205</option>
-																		<option>206</option>
-																	</select>
+																	<?php
+																		$linkHab  = conectarse();
+																		$sqlHab = "SELECT numHabitacion FROM habitaciones";
+																		$resulHab = mysqli_query($linkHab, $sqlHab);
+																		
+
+																		echo "<select class='form-control mb-md' id='cmbHab' name='numHab' required >";
+																		while ($filaHab = mysqli_fetch_array($resulHab)) {
+																			echo "<option value='" . htmlspecialchars($filaHab['numHabitacion']) . "'>"
+																			. htmlspecialchars($filaHab['numHabitacion']) 
+																			. "</option>";
+																		}
+																		echo "</select>";
+
+																	?>
 																</div>
 															</div>
-															
 															<div class="form-group">
-																<label class="col-sm-3 control-label">Estado</label>
-								
+																<label class="col-sm-3 control-label">Diagnostico</label>
 																<div class="col-sm-9">
-								
-																	<div class="radio-custom radio-primary">
-																		<input type="radio" id="radioExample2" name="rdoEstado" value="Sin Riesgo">
-																		<label for="radioExample2">Sin Riesgo</label>
-																	</div>
-								
-																	<div class="radio-custom radio-success">
-																		<input type="radio" id="radioExample3" name="rdoEstado" value="Bajo Riesgo">
-																		<label for="radioExample3">Bajo Riesgo</label>
-																	</div>
-								
-																	<div class="radio-custom radio-warning">
-																		<input type="radio" id="radioExample4" name="rdoEstado" value="Mediano Riesgo">
-																		<label for="radioExample4">Mediano Riesgo</label>
-																	</div>
-								
-																	<div class="radio-custom radio-danger">
-																		<input type="radio" id="radioExample5" name="rdoEstado" value="Alto Riesgo">
-																		<label for="radioExample5">Alto Riesgo</label>
-																	</div>
+																	<?php
+																		$linkDia  = conectarse();
+																		$sqlDia = "SELECT * FROM diagnostico";
+																		$resulDia = mysqli_query($linkDia, $sqlDia);
+																		
+
+																		echo "<select class='form-control mb-md' id='cmbDiag' name='diagnostico' required >";
+																		while ($filaDia = mysqli_fetch_array($resulDia)) {
+																			echo "<option value='" . htmlspecialchars($filaDia['claveDiagnostico']) . "'>"
+																			. htmlspecialchars($filaDia['descripcion']) 
+																			. "</option>";
+																		}
+																		echo "</select>";
+
+																	?>
 																</div>
 															</div>
+															<div class="form-group">
+																<label class="col-sm-3 control-label">Medico</label>
+																<div class="col-sm-9">
+																	<?php
+																		$linkMed  = conectarse();
+																		$sqlMed = "SELECT cedula, CONCAT(nombre, ' ', apellidos) As Nombre FROM medicos";
+																		$resulMed = mysqli_query($linkMed, $sqlMed);
+																		
+
+																		echo "<select class='form-control mb-md' id='cmbMed' name='medicos' required >";
+																		while ($filaMed = mysqli_fetch_array($resulMed)) {
+																			echo "<option value='" . htmlspecialchars($filaMed['cedula']) . "'>"
+																			. htmlspecialchars($filaMed['Nombre']) 
+																			. "</option>";
+																		}
+																		echo "</select>";
+
+																	?>
 																</div>
-																<footer class="panel-footer">
-																	<div class="row">
-																		<div class="col-md-12 text-right">
-																			<input class="btn btn-primary " id="enviar" name="guardar" type="submit" value="Dar de Alta"/>
-														</form>
-															
-														
+															</div>
+													</div>
+													<footer class="panel-footer">
+														<div class="row">
+															<div class="col-md-12 text-right">
+																<!--<input class="btn btn-primary " id="enviar" name="guardar" type="submit" value="Dar de Alta"/>-->
 																<button class="btn btn-default modal-dismiss">Cancelar</button>
 															</div>
 														</div>
 													</footer>
-												</section>
+													<button id="btnRegistrar" value="registrar" onclick="registrar()">Registrar</button>
+												<!--</section>-->
 											</div>
 											
 										
@@ -299,10 +339,17 @@ $resul = mysqli_query($link, $sql);
 									<table class="table table-bordered table-striped table-condensed mb-none">
 										<thead>
 											<tr>
-												<th>No. de Expediente</th>
+												<th>No. Expediente</th>
 												<th>Nombre(s)</th>
-												<th>Diagnostico</th>
+												<th>Apellidos</th>
+												<th>Dirección</th>
 												<th>Estado</th>
+												<th>Fecha Nacimiento</th>
+												<th>Fecha Ingreso</th>
+												<th>Telefono</th>
+												<th>Habitacion</th>
+												<th>Diagnostico</th>
+												<th>Medico</th>
 												<th>Acciones</th>
 											</tr>
 										</thead>
@@ -315,14 +362,21 @@ $resul = mysqli_query($link, $sql);
 													<!--<td>' . $fila['nombre'] . '</td>   -->
 													<!--<td>' . $fila['direccion'] . '</td>-->
 													<!--<td>' . $fila['email'] . '</td>    -->
-													<td><span id="id<?php echo $fila['id']; ?>"><?php echo $fila['id']; ?></span></td>
-													<td><span id="nombre<?php echo $fila['id']; ?>"><?php echo $fila['nombre']; ?></span></td>
-													<td><span id="direccion<?php echo $fila['id']; ?>"><?php echo $fila['direccion']; ?></span></td>
-													<td><span id="email<?php echo $fila['id']; ?>"><?php echo $fila['email']; ?></span></td>
+													<td><span id="id<?php echo htmlspecialchars($fila['expediente']); ?>" value="<?php echo htmlspecialchars($fila['expediente']); ?>"><?php echo htmlspecialchars($fila['expediente']); ?></span></td>
+													<td><span id="nombre<?php echo $fila['expediente']; ?>"><?php echo $fila['nombre']; ?></span></td>
+													<td><span id="apellido<?php echo $fila['expediente']; ?>"><?php echo $fila['apellidos']; ?></span></td>
+													<td><span id="direccion<?php echo $fila['expediente']; ?>"><?php echo $fila['direccion']; ?></span></td>
+													<td><span id="status<?php echo $fila['expediente']; ?>"><?php echo $fila['status']; ?></span></td>
+													<td><span id="fechaNac<?php echo $fila['expediente']; ?>"><?php echo $fila['fechaNacimiento']; ?></span></td>
+													<td><span id="fechaIng<?php echo $fila['expediente']; ?>"><?php echo $fila['fechaIngreso']; ?></span></td>
+													<td><span id="telefono<?php echo $fila['expediente']; ?>"><?php echo $fila['telefono']; ?></span></td>
+													<td><span id="numHab<?php echo $fila['expediente']; ?>"><?php echo $fila['numHabitacion']; ?></span></td>
+													<td><span id="diagnostico<?php echo $fila['expediente']; ?>"><?php echo $fila['claveDiagnostico']; ?></span></td>
+													<td><span id="medico<?php echo $fila['expediente']; ?>"><?php echo $fila['medico']; ?></span></td>
 													<td>
-														<a class="btn btn-info" href="delete.php?id=<?php echo $fila['id']; ?>">Salida de Paciente</a>
+														<a class="btn btn-info" href="delete.php?id=<?php echo $fila['expediente']; ?>">Salida</a>
 														
-														<button type="button" class="btn btn-success edit" value="<?php echo $fila['id']; ?>"><span class="glyphicon glyphicon-edit"></span> Actualizar Datos</button>
+														<button type="button" class="btn btn-success edit" value="<?php echo $fila['expediente']; ?>"> Actualizar</button>
 													</td>
 												</tr>
 											<?php
@@ -367,7 +421,8 @@ $resul = mysqli_query($link, $sql);
 		<script src="assets/javascripts/ui-elements/examples.modals.js"></script>
 		
 		<?php include('modal.php'); ?>
-		<script src="custom.js"></script>
+		<script src="assets/javascripts/custom.js"></script>
+		<script src="assets/javascripts/pacientes.js"></script>
 
 	</body>
 </html>
