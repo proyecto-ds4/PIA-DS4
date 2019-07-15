@@ -111,25 +111,25 @@ $resul = mysqli_query($link, $sql);
 							<nav id="menu" class="nav-main" role="navigation">
 								<ul class="nav nav-main">
 									<li class="nav-active">
-										<a href="expedientes.html">
+										<a href="index.php">
 											<i class="fa fa-home" aria-hidden="true"></i>
 											<span>Expedientes</span>
 										</a>
 									</li>
 									<li>
-										<a href="doctores.html">
+										<a href="medicos.php">
 											<i class="fa fa-home" aria-hidden="true"></i>
 											<span>Medicos</span>
 										</a>
 									</li>
 									<li>
-										<a href="habitaciones.html">
+										<a href="habitaciones.php">
 											<i class="fa fa-home" aria-hidden="true"></i>
 											<span>Habitaciones</span>
 										</a>
 									</li>
 									<li>
-										<a href="usuarios.html">
+										<a href="usuarios.php">
 											<i class="fa fa-home" aria-hidden="true"></i>
 											<span>Usuarios</span>
 										</a>

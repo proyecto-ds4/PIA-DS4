@@ -142,10 +142,7 @@
 						<h2>Menú Principal</h2>
 					</header>
 
-					<!-- start: page -->
-					
-										
-										
+					<!-- start: page -->													
 						<section class="panel">
 							<header class="panel-heading">
 								<div class="panel-actions">
@@ -181,9 +178,9 @@
 										<input type="submit" name="btnBuscarExpediente" value="Buscar Expediente" id="btnBuscarExpediente" class="btn btn-primary"> 
 									</div>
 									<div class="col-md-3 form-group">
-										<a class="modal-with-form btn btn-primary" href="#modalForm" style="padding-left: 21px; padding-right: 22px;">Añadir Medico</a> 
-										<!-- Modal Form -->
-										<div id="modalForm" class="modal-block modal-block-primary mfp-hide">
+										<a class="modal-with-form btn btn-primary" href="#regForm" style="padding-left: 21px; padding-right: 22px;">Añadir Medico</a> 
+										<!-- Modal Form registrar-->
+										<div id="regForm" class="modal-block modal-block-primary mfp-hide">
 										<!--<section class="panel">-->
 											<header class="panel-heading">
 												<h2 class="panel-title">Nuevo Medico</h2>
@@ -228,7 +225,53 @@
 										<footer class="panel-footer">
 											<div class="row">
 												<div class="col-md-12 text-right">
-													<button id="btnReg" class="btn btn-primary" onclick="registrar()">Registrar</button>
+													<button id="btnReg" class="btn btn-primary" onclick="">Registrar</button>
+													<button class="btn btn-default modal-dismiss">Cancelar</button>
+												</div>
+											</div>
+										</footer>
+									</div>
+									<div id="modForm" class="modal-block modal-block-primary mfp-hide">
+										<!--<section class="panel">-->
+											<header class="panel-heading">
+												<h2 class="panel-title">Actualizar Medico</h2>
+											</header>
+											<div class="panel-body">
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="inputDefault">No. de Cedula</label>
+													<div class="col-md-6">
+														<input id="mdCedula" ype="text" class="form-control" id="inputDefault" name="modCedula" readonly="readonly">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="inputDefault">Nombre</label>
+													<div class="col-md-6">
+														<input id="mdNombre" type="text" class="form-control" id="inputDefault" name="ModNombre" required>
+													</div>
+												</div>
+												<div class="form-group">
+												<label class="col-md-3 control-label" for="inputDefault">Apellidos</label>
+													<div class="col-md-6">
+														<input id="mdApellidos" type="text" class="form-control" id="inputDefault" name="ModApellidos" required>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="inputDefault" name="direccion">Direccion</label>
+													<div class="col-md-6">
+														<input id="mdDireccion" type="text" class="form-control" id="inputDefault" name="modDireccion" required>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="inputDefault">Telefono</label>
+													<div class="col-md-6">
+														<input id="mdTelefono" type="text" class="form-control" id="inputDefault" name="modTelefono" required>
+													</div>
+												</div>
+										</div>
+										<footer class="panel-footer">
+											<div class="row">
+												<div class="col-md-12 text-right">
+													<button id="btnReg" class="btn btn-primary" onclick="">Guardar</button>
 													<button class="btn btn-default modal-dismiss">Cancelar</button>
 												</div>
 											</div>
@@ -245,10 +288,14 @@
 												<th>Apellidos</th>
 												<th>Dirección</th>
 												<th>Telefono</th>
+												<th></th>
+												<th></th>
 											</tr>
 										</thead>
 											<tbody>
-												
+												<?php
+													cargartb();
+												?>
 											</tbody>
 									</table>
 								</div>
@@ -279,6 +326,9 @@
 		<script src="assets/javascripts/theme.init.js"></script>
 
 		<script src="assets/javascripts/ui-elements/examples.modals.js"></script>
+
+		<script src="assets/javascripts/custoMedico.js"></script>
+		<script src="assets/javascripts/medicos.js"></script>
 
 	</body>
 </html>
