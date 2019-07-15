@@ -103,25 +103,25 @@
 							<nav id="menu" class="nav-main" role="navigation">
 								<ul class="nav nav-main">
 									<li>
-										<a href="expedientes.html">
+										<a href="index.php">
 											<i class="fa fa-home" aria-hidden="true"></i>
 											<span>Expedientes</span>
 										</a>
 									</li>
 									<li>
-										<a href="doctores.html">
+										<a href="medicos.php">
 											<i class="fa fa-home" aria-hidden="true"></i>
 											<span>Medicos</span>
 										</a>
 									</li>
 									<li class="nav-active">
-										<a href="habitaciones.html">
+										<a href="habitaciones.php">
 											<i class="fa fa-home" aria-hidden="true"></i>
 											<span>Habitaciones</span>
 										</a>
 									</li>
 									<li>
-										<a href="usuarios.html">
+										<a href="usuarios.php">
 											<i class="fa fa-home" aria-hidden="true"></i>
 											<span>Usuarios</span>
 										</a>
@@ -158,12 +158,13 @@
 								<div class="col-md-12">
 							<!--Modal de "Agregar habitacion"--->
 							<div class="panel-body">
-	
+								<form id="form" method="POST" class="form-horizontal mb-lg" >
+									<a class="modal-with-form btn btn-primary" href="#HabForm">Añadir Habitación</a> 
+									<a class="modal-with-form btn btn-success edit" href="#FormUP">Modificar Habitación</a> 
+									<a class="modal-with-form btn btn-danger" href="#FormDEL">Eliminar Habitación</a> 
+								</form>
 							<div class="col-md-3">
-
-										<form id="form" method="POST" class="form-horizontal mb-lg" >
-										<a class="modal-with-form btn btn-primary" href="#HabForm" style="padding-left: 21px; padding-right: 22px;">Añadir Habitación</a> 
-									    </form>
+										
 										<!-- Modal Form -->
 											<div id="HabForm" class="modal-block modal-block-primary mfp-hide">
 
@@ -202,6 +203,7 @@
 																	</select>	
 																</div>
 																<button type="submit" name="registrar" value= 'registrar' class="btn btn-primary" >Agregar</button>
+																<button class="btn btn-default modal-dismiss">Cancelar</button>
 																<span><?php echo $res; ?></span>
 															</div>
 														</form>
@@ -216,10 +218,6 @@
 							<div class="panel-body" >
 	
 							<div class="col-md-3">
-
-										<form id="form" method="POST" class="form-horizontal mb-lg" >
-										<a class="modal-with-form btn btn-primary" href="#FormUP" style="padding-left: 21px; padding-right: 22px;">Modificar Habitación</a> 
-									    </form>
 										<!-- Modal Form -->
 											<div id="FormUP" class="modal-block modal-block-primary mfp-hide">
 
@@ -257,7 +255,8 @@
 																		<option value="S">Sucio</option>
 																	</select>	
 																</div>
-																<button type="submit" name="actualizar" value= 'actualizar' class="btn btn-primary" >Modificar</button>
+																<button type="submit" name="actualizar" value= 'actualizar' class="btn btn-success edit" >Modificar</button>
+																<button class="btn btn-default modal-dismiss">Cancelar</button>
 																<span><?php echo $res; ?></span>
 															</div>
 														</form>
@@ -272,10 +271,6 @@
 							<div class="panel-body">
 	
 							<div class="col-md-3">
-
-										<form id="form" method="POST" class="form-horizontal mb-lg" >
-										<a class="modal-with-form btn btn-primary" href="#FormDEL" style="padding-left: 21px; padding-right: 22px;">Eliminar Habitación</a> 
-									    </form>
 										<!-- Modal Form -->
 											<div id="FormDEL" class="modal-block modal-block-primary mfp-hide">
 
@@ -295,8 +290,8 @@
 																	<input type="text" id="numhab" name="numhab" placeholder="Habitación" class="form-control" required/>
 																</div>
 															</div>
-
-																<button type="submit" name="eliminar" value= 'eliminar' class="btn btn-primary" >Eliminar</button>
+																<button type="submit" name="eliminar" value= 'eliminar' class="btn btn-danger" >Eliminar</button>
+																<button class="btn btn-default modal-dismiss">Cancelar</button>
 																<span><?php echo $res; ?></span>
 														</form>
 													</div>

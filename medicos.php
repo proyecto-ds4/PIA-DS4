@@ -100,25 +100,25 @@
 							<nav id="menu" class="nav-main" role="navigation">
 								<ul class="nav nav-main">
 									<li class="nav-active">
-										<a href="expedientes.html">
+										<a href="index.php">
 											<i class="fa fa-home" aria-hidden="true"></i>
 											<span>Expedientes</span>
 										</a>
 									</li>
 									<li>
-										<a href="doctores.html">
+										<a href="medicos.php">
 											<i class="fa fa-home" aria-hidden="true"></i>
 											<span>Medicos</span>
 										</a>
 									</li>
 									<li>
-										<a href="habitaciones.html">
+										<a href="habitaciones.php">
 											<i class="fa fa-home" aria-hidden="true"></i>
 											<span>Habitaciones</span>
 										</a>
 									</li>
 									<li>
-										<a href="usuarios.html">
+										<a href="usuarios.php">
 											<i class="fa fa-home" aria-hidden="true"></i>
 											<span>Usuarios</span>
 										</a>
@@ -154,29 +154,6 @@
 							<div class="panel-body">
 							
 								<div class="form-group">
-									<label class="col-md-3 control-label">Busqueda de Expediente</label>
-									<div class="col-md-3">
-										<input type="text" id="txtBuscarExpediente" class="form-control" required>
-										<span class="help-block">Seleccione un filtro e ingrese un dato para realizar la busqueda.</span>
-									</div>
-									<div class="col-md-2">
-										<div class="radio-custom radio-primary">
-											<input id="awesome" name="porto_is" type="radio" value="awesome" required>
-											<label for="awesome">Paciente</label>
-										</div>
-										<div class="radio-custom radio-primary">
-											<input id="very-awesome" name="porto_is" type="radio" value="very-awesome" required>
-											<label for="very-awesome">Fecha</label>
-										</div>
-										<div class="radio-custom radio-primary">
-											<input id="ultra-awesome" name="porto_is" type="radio" value="ultra-awesome" required>
-											<label for="ultra-awesome">Medico</label>
-										</div>
-										<label class="error" for="porto_is"></label>
-									</div>
-									<div class="col-md-3 form-group">
-										<input type="submit" name="btnBuscarExpediente" value="Buscar Expediente" id="btnBuscarExpediente" class="btn btn-primary"> 
-									</div>
 									<div class="col-md-3 form-group">
 										<a class="modal-with-form btn btn-primary" href="#regForm" style="padding-left: 21px; padding-right: 22px;">Añadir Medico</a> 
 										<!-- Modal Form registrar-->
@@ -189,35 +166,35 @@
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="inputDefault">No. de Cedula</label>
 													<div class="col-md-6">
-														<input type="text" class="form-control" id="inputDefault" name="cedula" required>
+														<input type="text" class="form-control" id="iCedula" name="cedula" required>
 														<span class="help-block">Capture la cedula del medico.</span>
 													</div>
 												</div>
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="inputDefault">Nombre</label>
 													<div class="col-md-6">
-														<input type="text" class="form-control" id="inputDefault" name="nombre" required>
+														<input type="text" class="form-control" id="iNombre" name="nombre" required>
 														<span class="help-block">Capture el nombre del medico.</span>
 													</div>
 												</div>
 												<div class="form-group">
 												<label class="col-md-3 control-label" for="inputDefault">Apellidos</label>
 													<div class="col-md-6">
-														<input type="text" class="form-control" id="inputDefault" name="apellidos" required>
+														<input type="text" class="form-control" id="iApellidos" name="apellidos" required>
 														<span class="help-block">Capture los apellidos del medico.</span>
 													</div>
 												</div>
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="inputDefault" name="direccion">Direccion</label>
 													<div class="col-md-6">
-														<input type="text" class="form-control" id="inputDefault" name="direccion" required>
+														<input type="text" class="form-control" id="iDireccion" name="direccion" required>
 														<span class="help-block">Capture la direccion del medico.</span>
 													</div>
 												</div>
 												<div class="form-group">
 													<label class="col-md-3 control-label" for="inputDefault">Telefono</label>
 													<div class="col-md-6">
-														<input type="text" class="form-control" id="inputDefault" name="telefono" required>
+														<input type="text" class="form-control" id="iTelefono" name="telefono" required>
 														<span class="help-block">Capture el telefono del medico.</span>
 													</div>
 												</div>
@@ -225,7 +202,7 @@
 										<footer class="panel-footer">
 											<div class="row">
 												<div class="col-md-12 text-right">
-													<button id="btnReg" class="btn btn-primary" onclick="">Registrar</button>
+													<button id="btnReg" class="btn btn-primary" onclick="registrar()">Registrar</button>
 													<button class="btn btn-default modal-dismiss">Cancelar</button>
 												</div>
 											</div>
