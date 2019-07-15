@@ -35,35 +35,6 @@
 		<!-- Head Libs -->
 		<script src="assets/vendor/modernizr/modernizr.js"></script>
 
-
-		<!--Import jQuery before export.js-->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-
-
-    <!--Data Table-->
-    <script type="text/javascript"  src=" https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-
-
-		<!--Prepara/Carga la tabla desde la base-->
-		<script>
-			jQuery(document).ready(function ($) {
-          $('#TbHab').DataTable({
-              "responsive": true,
-              "processing": true,
-              "serverSide": true,
-              "ajax": {
-                  url: "assets/php/habitaciones.php", // json datasource
-                  data: {action: 'consultar'}, // Set the POST variable  array and adds action: getEMP
-                  type: 'post',  // method  , by default get
-              },
-              error : function(response) {
-                var responseTextObject = jQuery
-                        .parseJSON(response.responseText);
-              }
-          });
-      });
-		</script>
-
 	</head>
 	<body>
 		<?php 
@@ -236,7 +207,6 @@
 											</div>
 
 										</div>
-								
 										<div class="table-responsive">
 										<table id="TbHab" class="table table-bordered table-striped table-condensed mb-none" >
 										<thead>
@@ -247,11 +217,12 @@
 											</tr>
 										</thead>
 										<tbody>
-										
+										<?php 
+											cargartb();
+										?>
 										</tbody>
 										</table>
 								        </div>
-
 								<div class="panel-body">
 									<div class="col-md-3" style="position:15px; margin-left:15px;">
 										<div class="table-responsive">
