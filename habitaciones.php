@@ -154,9 +154,12 @@
 						
 								<h2 class="panel-title">Habitaciones</h2>
 							</header>
+								<!----Div para alinear todos --->
+								<div class="col-md-12">
+							<!--Modal de "Agregar habitacion"--->
 							<div class="panel-body">
 	
-										<div class="col-md-3 form-group">
+							<div class="col-md-3">
 
 										<form id="form" method="POST" class="form-horizontal mb-lg" >
 										<a class="modal-with-form btn btn-primary" href="#HabForm" style="padding-left: 21px; padding-right: 22px;">Añadir Habitación</a> 
@@ -207,8 +210,106 @@
 											</div>
 
 										</div>
+
+										<!---Modal de "Actualizar" habitacion---->
+
+							<div class="panel-body" >
+	
+							<div class="col-md-3">
+
+										<form id="form" method="POST" class="form-horizontal mb-lg" >
+										<a class="modal-with-form btn btn-primary" href="#FormUP" style="padding-left: 21px; padding-right: 22px;">Modificar Habitación</a> 
+									    </form>
+										<!-- Modal Form -->
+											<div id="FormUP" class="modal-block modal-block-primary mfp-hide">
+
+												<section class="panel">
+
+													<header class="panel-heading">
+														<h2 class="panel-title">Modificar Habitación</h2>
+													</header>
+
+													<div class="panel-body">
+
+														<form id="formulario" method="POST" class="form-horizontal mb-lg" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+
+															<div class="form-group mt-lg">
+																<label class="col-sm-3 control-label">No. de Habitación</label>
+																<div class="col-sm-9">
+																	<input type="text" id="numhab" name="numhab" placeholder="Habitación" class="form-control" required/>
+																</div>
+															</div>
+
+															<div class="form-group">
+																<label class="col-sm-3 control-label">Descripción</label>
+																<div class="col-sm-9">
+																	<input type="text" id="desc" name="desc" class="form-control" placeholder="Descripción" required/>
+																</div>
+															</div>
+
+															<div class="form-group">
+																<label class="col-sm-3 control-label">Status</label>
+																<div class="col-sm-9">
+																	<select id="status" name="status" class="form-control mb-md">
+																		<option value="0">Seleccione un status</option>
+																		<option value="D">Disponible</option>
+																		<option value="O">Ocupado</option>
+																		<option value="S">Sucio</option>
+																	</select>	
+																</div>
+																<button type="submit" name="actualizar" value= 'actualizar' class="btn btn-primary" >Modificar</button>
+																<span><?php echo $res; ?></span>
+															</div>
+														</form>
+													</div>
+												</section>
+											</div>
+
+										</div>
+
+										<!--Modal de "Eliminar" habitacion--->
+
+							<div class="panel-body">
+	
+							<div class="col-md-3">
+
+										<form id="form" method="POST" class="form-horizontal mb-lg" >
+										<a class="modal-with-form btn btn-primary" href="#FormDEL" style="padding-left: 21px; padding-right: 22px;">Eliminar Habitación</a> 
+									    </form>
+										<!-- Modal Form -->
+											<div id="FormDEL" class="modal-block modal-block-primary mfp-hide">
+
+												<section class="panel">
+
+													<header class="panel-heading">
+														<h2 class="panel-title">Eliminar Habitación</h2>
+													</header>
+
+													<div class="panel-body">
+
+														<form id="formulario" method="POST" class="form-horizontal mb-lg" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+
+															<div class="form-group mt-lg">
+																<label class="col-sm-3 control-label">No. de Habitación</label>
+																<div class="col-sm-9">
+																	<input type="text" id="numhab" name="numhab" placeholder="Habitación" class="form-control" required/>
+																</div>
+															</div>
+
+																<button type="submit" name="eliminar" value= 'eliminar' class="btn btn-primary" >Eliminar</button>
+																<span><?php echo $res; ?></span>
+														</form>
+													</div>
+												</section>
+											</div>
+
+							</div>
+							</div>
+
+										<!---Grid de habitaciones-->
 										<div class="table-responsive">
 										<table id="TbHab" class="table table-bordered table-striped table-condensed mb-none" >
+											
 										<thead>
 											<tr>
 												<th>Habitacion</th>
@@ -229,15 +330,15 @@
 											<table class="table table-bordered table-striped table-condensed mb-none">
 												<tbody>
 													<tr>
-														<td style="background-color:yellowgreen;color:white;">Verde</td>
+														<td style="background-color:RGBA(125,231,58,0.5);">Verde</td>
 														<td>Disponible</td>
 													</tr>
 													<tr>
-														<td style="background-color:red;color:white;">Rojo</td>
+														<td style="background-color:RGBA(231,58,67,0.5);">Rojo</td>
 														<td>Ocupada</td>
 													</tr>
 													<tr>
-														<td style="background-color:gold;color:white;">Amarillo</td>
+														<td style="background-color:RGBA(231,223,58,0.48);">Amarillo</td>
 														<td>Sucia</td>
 													</tr>
 												</tbody>

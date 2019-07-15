@@ -1,3 +1,4 @@
+		<?php
 		function cargarTabla($opcion, $numhabitacion, $status, $descripcion){
 
 		$columnas = array('numhabitacion' => 0,
@@ -46,3 +47,5 @@
 		}
 
 	}
+
+	?>
