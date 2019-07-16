@@ -107,26 +107,26 @@
 							<nav id="menu" class="nav-main" role="navigation">
 								<ul class="nav nav-main">
 									<li>
-										<a href="expedientes.html">
-											<i class="fa fa-home" aria-hidden="true"></i>
+										<a href="index.php">
+											<i class="fa fa-ambulance" aria-hidden="true"></i>
 											<span>Expedientes</span>
 										</a>
 									</li>
 									<li>
-										<a href="doctores.html">
-											<i class="fa fa-home" aria-hidden="true"></i>
+										<a href="medicos.php">
+											<i class="fa fa-user-md" aria-hidden="true"></i>
 											<span>Medicos</span>
 										</a>
 									</li>
 									<li>
-										<a href="habitaciones.html">
-											<i class="fa fa-money" aria-hidden="true"></i>
+										<a href="habitaciones.php">
+											<i class="fa fa-hospital-o" aria-hidden="true"></i>
 											<span>Habitaciones</span>
 										</a>
 									</li>
 									<li class="nav-active">
-										<a href="usuarios.html">
-											<i class="fa fa-home" aria-hidden="true"></i>
+										<a href="usuarios.php">
+											<i class="fa fa-users" aria-hidden="true"></i>
 											<span>Usuarios</span>
 										</a>
 									</li>
